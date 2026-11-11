@@ -2470,14 +2470,17 @@ body {
 }
 
 
-/* GTA V - Better Image Framing */
-.hero-slider .slide:nth-child(2) img {
-    object-position: center 12%;
+
+/* GAMENEW - FINAL SLIDER IMAGE POSITION */
+
+/* Resident Evil 9 */
+.hero-slider .slide:nth-child(1) img {
+    object-position: center 8%;
 }
 
-/* Resident Evil */
-.hero-slider .slide:nth-child(1) img {
-    object-position: center 25%;
+/* GTA V */
+.hero-slider .slide:nth-child(2) img {
+    object-position: center 12%;
 }
 
 /* Shadow of the Tomb Raider */
