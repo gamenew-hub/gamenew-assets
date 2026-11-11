@@ -2469,3 +2469,19 @@ body {
     }
 }
 
+
+/* GTA V - Better Image Framing */
+.hero-slider .slide:nth-child(2) img {
+    object-position: center 12%;
+}
+
+/* Resident Evil */
+.hero-slider .slide:nth-child(1) img {
+    object-position: center 25%;
+}
+
+/* Shadow of the Tomb Raider */
+.hero-slider .slide:nth-child(3) img {
+    object-position: center 35%;
+}
+
