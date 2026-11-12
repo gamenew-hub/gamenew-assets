@@ -2961,3 +2961,229 @@ body:not(.is-post-page) .game-post .post-taxonomy {
     flex-shrink: 0;
 }
 
+/* =========================================
+   GAMENEW - PREMIUM SIDEBAR
+========================================= */
+
+/* باکس‌های نوار کناری */
+.sidebar-widget {
+    position: relative;
+    padding: 20px;
+    background: linear-gradient(145deg, #192437, #121c2c);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 13px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.13);
+    transition: border-color .3s ease, transform .3s ease;
+}
+
+.sidebar-widget:hover {
+    border-color: rgba(29,161,255,0.35);
+    transform: translateY(-2px);
+}
+
+/* عنوان هر بخش */
+.sidebar-widget .widget-title {
+    position: relative;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    padding: 0 13px 13px 0;
+    margin-bottom: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-widget .widget-title::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 3px;
+    width: 4px;
+    height: 19px;
+    background: #1da1ff;
+    border-radius: 5px;
+}
+
+/* جستجوی راهنما */
+.search-widget form {
+    display: flex;
+    gap: 7px;
+}
+
+.search-widget input {
+    flex: 1;
+    min-width: 0;
+    height: 43px;
+    padding: 0 12px;
+    background: #0e1726;
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 8px;
+    color: #fff;
+    outline: none;
+}
+
+.search-widget input:focus {
+    border-color: #1da1ff;
+}
+
+.search-widget button {
+    padding: 0 13px;
+    background: #1da1ff;
+    color: #fff;
+    border-radius: 8px;
+    transition: background .25s ease;
+}
+
+.search-widget button:hover {
+    background: #0879c7;
+}
+
+/* آخرین راهنماها */
+.sidebar-post-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-post-list li {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-post-list li:last-child {
+    border-bottom: 0;
+}
+
+.sidebar-post-list a {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 2px;
+    color: #cbd5e4;
+    font-size: 12px;
+    line-height: 1.9;
+    transition: color .25s ease;
+}
+
+.sidebar-post-list a:hover {
+    color: #35adff;
+}
+
+.sidebar-arrow {
+    color: #1da1ff;
+    font-size: 18px;
+    transition: transform .25s ease;
+}
+
+.sidebar-post-list a:hover .sidebar-arrow {
+    transform: translateX(-4px);
+}
+
+/* دسته‌بندی بازی‌ها */
+.sidebar-category-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.sidebar-category-list a {
+    display: block;
+    padding: 9px 7px;
+    background: #111d2e;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    color: #cbd5e4;
+    font-size: 11px;
+    text-align: center;
+    transition: all .25s ease;
+}
+
+.sidebar-category-list a:hover {
+    color: #fff;
+    background: rgba(29,161,255,0.16);
+    border-color: rgba(29,161,255,0.4);
+}
+
+/* آرشیو راهنماها */
+.sidebar-archive-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-archive-list li {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-archive-list li:last-child {
+    border-bottom: 0;
+}
+
+.sidebar-archive-list a {
+    display: block;
+    padding: 9px 4px;
+    color: #b9c6d8;
+    font-size: 12px;
+    transition: all .25s ease;
+}
+
+.sidebar-archive-list a:hover {
+    color: #35adff;
+    padding-right: 10px;
+}
+
+/* درباره سایت */
+.sidebar-profile-image {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    margin: 5px auto 15px;
+    border-radius: 50%;
+    border: 2px solid rgba(29,161,255,0.45);
+}
+
+.about-widget p {
+    color: #b9c6d8;
+    font-size: 12px;
+    line-height: 2.2;
+}
+
+.sidebar-more {
+    display: inline-block;
+    margin-top: 12px;
+    color: #35adff;
+    font-size: 12px;
+}
+
+/* شبکه‌های اجتماعی */
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.social-links a {
+    flex: 1;
+    min-width: 65px;
+    padding: 9px 6px;
+    background: #111d2e;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    color: #cbd5e4;
+    text-align: center;
+    font-size: 11px;
+    transition: all .25s ease;
+}
+
+.social-links a:hover {
+    background: #1da1ff;
+    color: #fff;
+}
+
+/* موبایل */
+@media (max-width: 600px) {
+    .sidebar-widget {
+        padding: 16px;
+    }
+
+    .sidebar-widget .widget-title {
+        font-size: 14px;
+    }
+}
+
