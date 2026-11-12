@@ -2794,3 +2794,126 @@ body:not(.is-post-page) .posts-grid .post-image {
         min-height: 300px;
     }
 }
+
+
+/* =========================================
+   GAMENEW - PREMIUM GAME CARDS
+========================================= */
+
+/* جلوه کلی کارت */
+.game-post {
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.game-post:hover,
+.game-post:focus-within {
+    transform: translateY(-7px);
+    border-color: rgba(29,161,255,0.65);
+    box-shadow:
+        0 18px 45px rgba(0,0,0,0.35),
+        0 0 22px rgba(29,161,255,0.12);
+}
+
+/* تصویر کارت */
+.game-post .post-image {
+    position: relative;
+    overflow: hidden;
+    background: #101827;
+}
+
+.game-post .post-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        0deg,
+        rgba(7,12,21,0.25),
+        transparent 45%
+    );
+}
+
+/* عنوان بازی */
+.game-post .post-title {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.9;
+    margin-bottom: 12px;
+}
+
+.game-post .post-title a {
+    transition: color .25s ease;
+}
+
+.game-post:hover .post-title a {
+    color: #35adff;
+}
+
+/* اطلاعات تاریخ و نویسنده */
+.game-post .post-meta {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    color: #9eabc0;
+    font-size: 12px;
+}
+
+/* خلاصه مطلب */
+.game-post .post-excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    max-height: none;
+    overflow: hidden;
+    color: #b5c0d1;
+    font-size: 13px;
+    line-height: 2.1;
+}
+
+/* لینک ادامه راهنما */
+.game-post .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    width: fit-content;
+    margin-top: 17px;
+    padding: 8px 14px;
+    background: rgba(29,161,255,0.09);
+    border: 1px solid rgba(29,161,255,0.2);
+    border-radius: 8px;
+    color: #35adff;
+    transition: all .25s ease;
+}
+
+.game-post .read-more:hover {
+    background: #1da1ff;
+    color: #ffffff;
+    border-color: #1da1ff;
+    transform: translateX(-4px);
+}
+
+/* موبایل */
+@media (max-width: 700px) {
+    .game-post .post-title {
+        font-size: 18px;
+    }
+
+    .game-post:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* کاهش حرکت برای تنظیمات دسترس‌پذیری */
+@media (prefers-reduced-motion: reduce) {
+    .game-post,
+    .game-post * {
+        transition: none !important;
+    }
+}
+
