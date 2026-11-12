@@ -2780,3 +2780,17 @@ body.is-post-page .read-more {
     }
 }
 
+
+/* بزرگ‌تر شدن تصاویر کارت‌های صفحه اصلی */
+body:not(.is-post-page) .posts-grid .post-image {
+    height: 300px;
+    min-height: 300px;
+}
+
+/* تنظیم تصاویر در موبایل */
+@media (max-width: 600px) {
+    body:not(.is-post-page) .posts-grid .post-image {
+        height: 240px;
+        min-height: 240px;
+    }
+}
