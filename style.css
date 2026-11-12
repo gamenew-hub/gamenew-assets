@@ -2657,3 +2657,126 @@ body {
     }
 }
 
+/* =========================================
+   GAMENEW - POST CARDS & FULL POST
+========================================= */
+
+/* تصویر شاخص کارت‌ها */
+.post-image {
+    display: block;
+    width: 100%;
+    height: 215px;
+    min-height: 215px;
+    overflow: hidden;
+}
+
+.post-cover-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.game-post:hover .post-cover-image {
+    transform: scale(1.05);
+}
+
+.post-image.has-cover::before {
+    display: none;
+}
+
+/* صفحه اختصاصی مطلب */
+body.is-post-page .hero {
+    display: none;
+}
+
+body.is-post-page .section-heading {
+    display: none;
+}
+
+body.is-post-page .posts-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+}
+
+body.is-post-page .game-post {
+    transform: none;
+}
+
+body.is-post-page .game-post:hover {
+    transform: none;
+}
+
+body.is-post-page .post-image {
+    display: none;
+}
+
+body.is-post-page .post-body {
+    padding: 28px;
+}
+
+body.is-post-page .post-title {
+    font-size: 25px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+body.is-post-page .post-excerpt {
+    max-height: none;
+    height: auto;
+    overflow: visible;
+    color: #d5dce8;
+    font-size: 15px;
+    line-height: 2.3;
+}
+
+body.is-post-page .post-excerpt img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 22px auto;
+    border-radius: 10px;
+}
+
+body.is-post-page .post-excerpt p {
+    margin-bottom: 18px;
+}
+
+body.is-post-page .post-excerpt h2,
+body.is-post-page .post-excerpt h3,
+body.is-post-page .post-excerpt h4 {
+    color: #ffffff;
+    margin: 28px 0 15px;
+    line-height: 1.9;
+}
+
+body.is-post-page .post-taxonomy {
+    margin-top: 25px;
+}
+
+body.is-post-page .read-more {
+    display: none;
+}
+
+/* نمایش بهتر در موبایل */
+@media (max-width: 600px) {
+    .post-image {
+        height: 190px;
+        min-height: 190px;
+    }
+
+    body.is-post-page .post-body {
+        padding: 17px;
+    }
+
+    body.is-post-page .post-title {
+        font-size: 21px;
+    }
+
+    body.is-post-page .post-excerpt {
+        font-size: 14px;
+    }
+}
+
