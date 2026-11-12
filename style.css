@@ -2917,3 +2917,47 @@ body:not(.is-post-page) .posts-grid .post-image {
     }
 }
 
+
+/* =========================================
+   GAMENEW - EQUAL HEIGHT POST CARDS
+========================================= */
+
+/* هم‌اندازه شدن کارت‌ها در هر ردیف */
+body:not(.is-post-page) .posts-grid {
+    align-items: stretch;
+}
+
+body:not(.is-post-page) .game-post {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* بخش داخلی کارت */
+body:not(.is-post-page) .game-post .post-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+/* جلوگیری از کوچک شدن تصویر */
+body:not(.is-post-page) .game-post .post-image {
+    flex-shrink: 0;
+}
+
+/* فاصله منظم بخش توضیحات */
+body:not(.is-post-page) .game-post .post-excerpt {
+    flex-shrink: 0;
+}
+
+/* انتقال دکمه به پایین کارت */
+body:not(.is-post-page) .game-post .read-more {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* جلوگیری از فشرده شدن اطلاعات */
+body:not(.is-post-page) .game-post .post-taxonomy {
+    flex-shrink: 0;
+}
+
