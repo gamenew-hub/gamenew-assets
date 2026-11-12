@@ -2,29 +2,37 @@
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
-    /* استخراج تصویر شاخص مطالب */
+    // تشخیص صفحه اصلی و صفحه اختصاصی مطلب
+    const isPostPage = /^\/post\/\d+/i.test(window.location.pathname);
+
+    document.body.classList.toggle("is-post-page", isPostPage);
+
+    // مدیریت تصاویر مطالب
     document.querySelectorAll(".game-post").forEach(function (post) {
         const content = post.querySelector(".post-excerpt");
         const imageBox = post.querySelector(".post-image");
-        const readMore = post.querySelector(".read-more");
 
         if (!content || !imageBox) return;
 
-        const isSummaryCard = Boolean(readMore);
-
-        if (!isSummaryCard) {
+        // در صفحه اختصاصی، تصاویر داخل متن دست‌نخورده باقی بمانند
+        if (isPostPage) {
             post.classList.add("is-full-post");
+            return;
         }
 
-        if (imageBox.querySelector(".post-cover-image")) return;
-
+        // در صفحه اصلی، اولین تصویر به تصویر شاخص تبدیل شود
         const firstImage = content.querySelector("img");
+
         if (!firstImage) return;
 
         const imageUrl = firstImage.getAttribute("src");
+
         if (!imageUrl) return;
 
+        if (imageBox.querySelector(".post-cover-image")) return;
+
         const cover = document.createElement("img");
+
         cover.className = "post-cover-image";
         cover.src = imageUrl;
         cover.alt = "";
@@ -34,12 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
         imageBox.prepend(cover);
         imageBox.classList.add("has-cover");
 
-        if (isSummaryCard) {
-            firstImage.remove();
-        }
+        // تصویر شاخص از متن کارت حذف شود
+        firstImage.remove();
     });
 
-    /* دکمه بازگشت به بالا */
+    // دکمه بازگشت به بالا
     const backToTop = document.getElementById("backToTop");
 
     if (backToTop) {
@@ -57,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.body.classList.add("theme-loaded");
 
-    /* مدیریت لینک‌های خارجی */
+    // مدیریت لینک‌های خارجی
     document.querySelectorAll("a[href]").forEach(function (link) {
         const href = link.getAttribute("href");
 
@@ -74,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 link.setAttribute("rel", "noopener noreferrer");
             }
         } catch (error) {
-            // لینک‌های نامعتبر بدون تغییر باقی می‌مانند.
+            // لینک‌های نامعتبر بدون تغییر باقی می‌مانند
         }
     });
 });
