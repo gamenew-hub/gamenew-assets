@@ -3889,3 +3889,124 @@ body.is-post-page .game-post.is-full-post {
 .header-search .search-suggestions .search-suggestion:last-child {
     border-bottom: 0 !important;
 }
+
+
+/* =========================================
+   GAMENEW - GAME GENRE FILTERS
+========================================= */
+
+.genre-filter {
+    margin: 0 0 30px;
+    padding: 25px;
+    background:
+        linear-gradient(135deg, #172438, #101a2a);
+    border: 1px solid rgba(29, 161, 255, 0.16);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.genre-filter-heading {
+    margin-bottom: 20px;
+}
+
+.genre-filter-heading span {
+    display: block;
+    margin-bottom: 4px;
+    color: #1da1ff;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.genre-filter-heading h2 {
+    color: #fff;
+    font-size: 21px;
+    margin-bottom: 4px;
+}
+
+.genre-filter-heading p {
+    color: #aab3c5;
+    font-size: 12px;
+}
+
+.genre-filter-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.genre-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 66px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 11px;
+    color: #e8edf6;
+    transition: all 0.25s ease;
+}
+
+.genre-item:hover {
+    background: rgba(29, 161, 255, 0.12);
+    border-color: #1da1ff;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px rgba(29, 161, 255, 0.12);
+}
+
+.genre-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(29, 161, 255, 0.10);
+    border-radius: 10px;
+    font-size: 21px;
+}
+
+.genre-item strong {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+    .genre-filter-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* MOBILE */
+@media (max-width: 500px) {
+    .genre-filter {
+        padding: 17px;
+    }
+
+    .genre-filter-heading h2 {
+        font-size: 18px;
+    }
+
+    .genre-filter-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+    }
+
+    .genre-item {
+        min-height: 60px;
+        padding: 9px;
+        gap: 8px;
+    }
+
+    .genre-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 18px;
+    }
+
+    .genre-item strong {
+        font-size: 11px;
+    }
+}
