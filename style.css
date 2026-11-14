@@ -3396,3 +3396,57 @@ body.is-post-page .game-post.is-full-post .post-taxonomy::after {
         gap: 6px;
     }
 }
+
+/* =========================================
+   GAMENEW - CRITICAL FULL POST CONTENT FIX
+========================================= */
+
+/* نمایش کامل متن راهنما */
+body.is-post-page .game-post.is-full-post .post-excerpt {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset !important;
+}
+
+/* نمایش کامل محتوای داخلی */
+body.is-post-page .game-post.is-full-post .post-body {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* قرار گرفتن دسته‌بندی و برچسب‌ها بعد از تمام متن */
+body.is-post-page .game-post.is-full-post .post-taxonomy {
+    position: static !important;
+    display: flex !important;
+    flex-direction: column !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin-top: 28px !important;
+    overflow: visible !important;
+    box-sizing: border-box;
+}
+
+/* نمایش کامل ردیف دسته‌بندی و برچسب */
+body.is-post-page .game-post.is-full-post .post-categories,
+body.is-post-page .game-post.is-full-post .post-tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100%;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* حفظ ارتفاع طبیعی کارت مطلب */
+body.is-post-page .game-post.is-full-post {
+    height: auto !important;
+    max-height: none !important;
+}
+
