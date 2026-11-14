@@ -3450,3 +3450,224 @@ body.is-post-page .game-post.is-full-post {
     max-height: none !important;
 }
 
+
+/* =========================================
+   GAMENEW - PREMIUM FOOTER
+========================================= */
+
+.site-footer {
+    position: relative;
+    margin-top: 65px;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(29,161,255,.10), transparent 65%),
+        #080e19;
+    border-top: 1px solid rgba(29,161,255,.25);
+    color: #c4d0df;
+}
+
+/* خط نورانی بالای فوتر */
+.site-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 10%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #1da1ff,
+        transparent
+    );
+}
+
+/* چیدمان چهارستونه */
+.footer-main {
+    width: min(1400px, calc(100% - 40px));
+    margin: auto;
+    padding: 55px 0 40px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+    gap: 35px;
+}
+
+/* ستون‌ها */
+.footer-column {
+    min-width: 0;
+}
+
+.footer-column h3,
+.footer-column .footer-title {
+    position: relative;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 22px;
+    padding-right: 13px;
+}
+
+.footer-column h3::before,
+.footer-column .footer-title::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 2px;
+    width: 4px;
+    height: 19px;
+    background: #1da1ff;
+    border-radius: 5px;
+}
+
+/* معرفی سایت */
+.footer-logo {
+    display: inline-block;
+    margin-bottom: 14px;
+}
+
+.footer-logo img {
+    display: block;
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+    transition: transform .3s ease;
+}
+
+.footer-logo:hover img {
+    transform: translateY(-3px);
+}
+
+.footer-about h3 {
+    margin-bottom: 12px;
+}
+
+.footer-about p,
+.footer-support p {
+    color: #9eacc0;
+    font-size: 12px;
+    line-height: 2.3;
+    text-align: justify;
+}
+
+/* فهرست لینک‌ها */
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footer-menu li a {
+    display: block;
+    padding: 7px 0;
+    color: #aebbd0;
+    font-size: 12px;
+    transition: all .25s ease;
+}
+
+.footer-menu li a::before {
+    content: "‹";
+    color: #1da1ff;
+    margin-left: 8px;
+    font-size: 17px;
+}
+
+.footer-menu li a:hover {
+    color: #35adff;
+    padding-right: 7px;
+}
+
+/* دکمه حمایت */
+.footer-donate {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: rgba(29,161,255,.12);
+    border: 1px solid rgba(29,161,255,.35);
+    border-radius: 8px;
+    color: #35adff;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all .3s ease;
+}
+
+.footer-donate:hover {
+    background: #1da1ff;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(29,161,255,.2);
+}
+
+/* نوار پایینی */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: min(1400px, calc(100% - 40px));
+    margin: auto;
+    padding: 18px 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    color: #75849a;
+    font-size: 11px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom a {
+    color: #35adff;
+    font-weight: bold;
+}
+
+.footer-credit {
+    color: #65748a;
+}
+
+/* تبلت */
+@media (max-width: 950px) {
+    .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 35px 25px;
+    }
+}
+
+/* موبایل */
+@media (max-width: 550px) {
+    .footer-main {
+        width: calc(100% - 32px);
+        padding: 38px 0 28px;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 18px;
+    }
+
+    .footer-about,
+    .footer-support {
+        grid-column: 1 / -1;
+    }
+
+    .footer-logo img {
+        width: 135px;
+    }
+
+    .footer-column h3,
+    .footer-column .footer-title {
+        font-size: 13px;
+    }
+
+    .footer-menu li a {
+        font-size: 11px;
+    }
+
+    .footer-bottom {
+        width: calc(100% - 32px);
+        flex-direction: column;
+        text-align: center;
+        line-height: 2;
+        gap: 5px;
+    }
+}
