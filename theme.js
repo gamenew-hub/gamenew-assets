@@ -405,3 +405,59 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 })();
+
+/* GAMENEW - GENRE PAGE DESCRIPTIONS */
+
+(function () {
+
+    function addGenreDescription() {
+
+        const match = window.location.pathname.match(/^\/tag\/([^/]+)/);
+        if (!match) return;
+
+        const slug = decodeURIComponent(match[1])
+            .replace(/-/g, " ")
+            .replace(/‌/g, " ")
+            .trim();
+
+        const descriptions = {
+            "ترسناک و بقا":
+                "با راهنماهای بازی‌های ترسناک و بقا همراه شوید؛ از ماجراجویی در محیط‌های دلهره‌آور تا مبارزه با موجودات خطرناک و تلاش برای زنده ماندن.",
+
+            "معمایی":
+                "در این بخش با بازی‌های معمایی و ماجراجویی آشنا می‌شوید و برای حل رازها، پیدا کردن سرنخ‌ها و عبور از چالش‌های ذهنی راهنمای قدم‌به‌قدم دریافت می‌کنید.",
+
+            "اکشن و ماجراجویی":
+                "راهنمای بازی‌های اکشن و ماجراجویی؛ از نبردهای هیجان‌انگیز و اکتشاف محیط‌ها تا عبور از مراحل دشوار و کشف داستان بازی‌ها.",
+
+            "جهان باز":
+                "در بازی‌های جهان‌باز آزادی بیشتری برای اکتشاف دارید. اینجا راهنماهایی برای مأموریت‌ها، ماجراجویی‌ها و کشف دنیای گسترده بازی‌ها پیدا می‌کنید.",
+
+            "بقا":
+                "در این مجموعه راهنمای بازی‌هایی را می‌بینید که زنده ماندن، مدیریت منابع و عبور از شرایط دشوار، بخش مهمی از تجربه آن‌هاست.",
+
+            "تیراندازی":
+                "با راهنماهای بازی‌های تیراندازی همراه شوید؛ از شناخت سلاح‌ها و تجهیزات تا عبور از مراحل و نبردهای چالش‌برانگیز."
+        };
+
+        const description = descriptions[slug];
+        const heading = document.querySelector(".section-heading");
+
+        if (!description || !heading) return;
+
+        if (document.querySelector(".genre-description")) return;
+
+        const paragraph = document.createElement("p");
+        paragraph.className = "genre-description";
+        paragraph.textContent = description;
+
+        heading.insertAdjacentElement("afterend", paragraph);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", addGenreDescription);
+    } else {
+        addGenreDescription();
+    }
+
+})();
