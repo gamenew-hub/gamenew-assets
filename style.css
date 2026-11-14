@@ -3702,3 +3702,68 @@ body.is-post-page .game-post.is-full-post {
         padding: 12px 0;
     }
 }
+
+/* =========================================
+   GAMENEW - UNIFIED SEARCH EXPERIENCE
+========================================= */
+
+/* ظاهر یکسان کادرهای جستجو */
+.header-search form,
+.search-widget form {
+    transition: border-color .25s ease, box-shadow .25s ease;
+}
+
+/* افکت هنگام انتخاب کادر */
+.header-search form:focus-within,
+.search-widget form:focus-within {
+    border-color: #1da1ff;
+    box-shadow: 0 0 0 3px rgba(29,161,255,.10);
+}
+
+/* فیلد ورودی */
+.header-search input,
+.search-widget input {
+    font-family: inherit;
+    font-size: 13px;
+    color: #fff;
+}
+
+/* دکمه جستجو */
+.header-search button,
+.search-widget button {
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    transition: background .25s ease, transform .25s ease;
+}
+
+/* افکت دکمه */
+.header-search button:hover,
+.search-widget button:hover {
+    background: #0879c7;
+}
+
+/* مشخص بودن کادر فعال با صفحه‌کلید */
+.header-search input:focus-visible,
+.search-widget input:focus-visible,
+.header-search button:focus-visible,
+.search-widget button:focus-visible {
+    outline: 2px solid #35adff;
+    outline-offset: -2px;
+}
+
+/* موبایل */
+@media (max-width: 450px) {
+    .header-search {
+        width: 100%;
+    }
+
+    .header-search form {
+        height: 44px;
+    }
+
+    .header-search input,
+    .search-widget input {
+        font-size: 13px;
+    }
+}
