@@ -3345,3 +3345,124 @@ body:not(.is-post-page) .game-post .post-taxonomy {
     }
 }
 
+/* =========================================
+   GAMENEW - READING EXPERIENCE
+========================================= */
+
+/* فضای مطالعه مطلب */
+.game-post.is-full-post .post-excerpt {
+    text-align: justify;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    color: #d5deeb;
+    font-size: 16px;
+    line-height: 2.4;
+}
+
+/* فاصله پاراگراف‌ها */
+.game-post.is-full-post .post-excerpt p {
+    margin: 0 0 22px;
+}
+
+/* تیتر اصلی مراحل */
+.game-post.is-full-post .post-excerpt h2 {
+    padding: 12px 15px;
+    margin: 38px 0 20px;
+    background: linear-gradient(
+        90deg,
+        rgba(29,161,255,.02),
+        rgba(29,161,255,.12)
+    );
+    border-right: 4px solid #1da1ff;
+    border-radius: 5px 10px 10px 5px;
+}
+
+/* تیترهای فرعی */
+.game-post.is-full-post .post-excerpt h3 {
+    margin: 30px 0 15px;
+    padding-right: 12px;
+    border-right: 2px solid rgba(29,161,255,.5);
+}
+
+/* تصاویر راهنما */
+.game-post.is-full-post .post-excerpt img {
+    display: block;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 28px auto;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    transition: box-shadow .3s ease;
+}
+
+.game-post.is-full-post .post-excerpt img:hover {
+    box-shadow: 0 15px 38px rgba(29,161,255,.13);
+}
+
+/* لینک‌های داخل متن */
+.game-post.is-full-post .post-excerpt a {
+    color: #35adff;
+    border-bottom: 1px solid rgba(53,173,255,.25);
+    transition: color .2s ease;
+}
+
+.game-post.is-full-post .post-excerpt a:hover {
+    color: #ff9a45;
+}
+
+/* جداکننده مراحل */
+.game-post.is-full-post .post-excerpt hr {
+    border: 0;
+    height: 1px;
+    margin: 32px 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(29,161,255,.45),
+        transparent
+    );
+}
+
+/* نقل‌قول‌ها */
+.game-post.is-full-post .post-excerpt blockquote {
+    margin: 25px 0;
+    padding: 18px 20px;
+    background: #111c2c;
+    border-right: 4px solid #1da1ff;
+    border-radius: 8px;
+    color: #b9cce0;
+}
+
+/* فهرست مراحل */
+.game-post.is-full-post .post-excerpt ul,
+.game-post.is-full-post .post-excerpt ol {
+    padding-right: 30px;
+    margin: 18px 0 25px;
+}
+
+.game-post.is-full-post .post-excerpt li {
+    padding-right: 5px;
+    margin-bottom: 12px;
+}
+
+/* موبایل */
+@media (max-width: 700px) {
+    .game-post.is-full-post .post-excerpt {
+        font-size: 14px;
+        line-height: 2.2;
+        text-align: right;
+    }
+
+    .game-post.is-full-post .post-excerpt h2 {
+        font-size: 19px;
+        margin-top: 28px;
+    }
+
+    .game-post.is-full-post .post-excerpt img {
+        margin: 20px auto;
+        border-radius: 8px;
+    }
+}
+
+
