@@ -3671,3 +3671,34 @@ body.is-post-page .game-post.is-full-post {
         gap: 5px;
     }
 }
+/* Compact mobile footer */
+@media (max-width: 550px) {
+    .footer-main {
+        padding-top: 30px;
+        padding-bottom: 22px;
+        row-gap: 24px;
+    }
+
+    .footer-column h3,
+    .footer-column .footer-title {
+        margin-bottom: 12px;
+    }
+
+    .footer-menu {
+        gap: 0;
+    }
+
+    .footer-menu li a {
+        padding: 5px 0;
+        line-height: 1.8;
+    }
+
+    .footer-about p,
+    .footer-support p {
+        line-height: 2;
+    }
+
+    .footer-bottom {
+        padding: 12px 0;
+    }
+}
