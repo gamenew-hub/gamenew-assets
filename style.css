@@ -3187,3 +3187,161 @@ body:not(.is-post-page) .game-post .post-taxonomy {
     }
 }
 
+/* =========================================
+   GAMENEW - PREMIUM HEADER V2
+========================================= */
+
+/* پس‌زمینه هدر */
+.site-header {
+    background:
+        linear-gradient(
+            110deg,
+            rgba(10,17,30,0.98),
+            rgba(15,27,44,0.97),
+            rgba(7,12,21,0.98)
+        );
+    border-bottom: 1px solid rgba(29,161,255,0.20);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+}
+
+/* خط نورانی زیر هدر */
+.site-header::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(29,161,255,0.8),
+        rgba(29,161,255,0.15),
+        transparent
+    );
+}
+
+/* ارتفاع و فاصله‌بندی */
+.header-inner {
+    min-height: 88px;
+    gap: 28px;
+}
+
+/* لوگو */
+.site-logo {
+    width: 175px;
+    max-height: 70px;
+    filter: drop-shadow(0 0 8px rgba(29,161,255,0.12));
+}
+
+.site-logo:hover {
+    filter: drop-shadow(0 0 12px rgba(29,161,255,0.4));
+}
+
+/* منوی اصلی */
+.main-nav {
+    gap: 7px;
+}
+
+.main-nav a {
+    padding: 10px 15px;
+    color: #c8d4e5;
+    font-weight: 600;
+    border: 1px solid transparent;
+    transition: all .3s ease;
+}
+
+.main-nav a:hover {
+    color: #fff;
+    background: rgba(29,161,255,0.12);
+    border-color: rgba(29,161,255,0.20);
+    transform: translateY(-2px);
+}
+
+.main-nav a::after {
+    height: 2px;
+    bottom: 2px;
+    border-radius: 5px;
+}
+
+/* کادر جستجو */
+.header-search {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.header-search form {
+    height: 45px;
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 10px;
+    background: rgba(17,26,41,0.9);
+    transition: all .3s ease;
+}
+
+.header-search form:focus-within {
+    border-color: rgba(29,161,255,0.7);
+    box-shadow: 0 0 0 3px rgba(29,161,255,0.10);
+}
+
+.header-search input {
+    font-size: 12px;
+}
+
+.header-search button {
+    width: 50px;
+    font-size: 18px;
+    transition: all .25s ease;
+}
+
+.header-search button:hover {
+    background: #0879c7;
+}
+
+/* نمایش مناسب در تبلت */
+@media (max-width: 1100px) {
+    .header-inner {
+        gap: 15px;
+    }
+
+    .site-logo {
+        width: 145px;
+    }
+
+    .header-search {
+        width: 190px;
+    }
+}
+
+/* موبایل */
+@media (max-width: 700px) {
+    .header-inner {
+        min-height: 65px;
+        gap: 10px;
+    }
+
+    .site-logo {
+        width: 125px;
+        max-height: 50px;
+    }
+
+    .main-nav a {
+        padding: 7px 11px;
+        border-radius: 7px;
+    }
+
+    .header-search {
+        width: 190px;
+    }
+}
+
+@media (max-width: 450px) {
+    .header-search {
+        width: 100%;
+    }
+
+    .header-inner {
+        padding: 12px 0;
+    }
+
+    .main-nav {
+        gap: 5px;
+    }
+}
+
