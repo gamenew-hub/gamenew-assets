@@ -348,3 +348,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+/* GAMENEW - DYNAMIC GENRE PAGE TITLE */
+document.addEventListener("DOMContentLoaded", function () {
+    const tagMatch = window.location.pathname.match(/^\/tag\/([^/]+)/);
+
+    if (!tagMatch) return;
+
+    const heading = document.querySelector(".section-heading h1");
+
+    if (!heading) return;
+
+    let genreName = decodeURIComponent(tagMatch[1])
+        .replace(/-/g, " ");
+
+    heading.textContent = "بازی‌های " + genreName;
+});
+
