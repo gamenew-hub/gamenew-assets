@@ -4010,3 +4010,29 @@ body.is-post-page .game-post.is-full-post {
         font-size: 11px;
     }
 }
+
+/* GAMENEW - GENRE CARDS HOVER EFFECT */
+
+@media (hover: hover) and (min-width: 768px) {
+
+    .genre-item {
+        transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease,
+            background 0.25s ease;
+    }
+
+    .genre-item:hover {
+        transform: translateY(-4px);
+        border-color: #2196f3;
+        box-shadow: 0 6px 20px rgba(33, 150, 243, 0.22);
+        background: #1c2b42;
+    }
+
+}
+
+.genre-item:focus-visible {
+    outline: 2px solid #2196f3;
+    outline-offset: 3px;
+}
