@@ -3767,3 +3767,78 @@ body.is-post-page .game-post.is-full-post {
         font-size: 13px;
     }
 }
+
+/* =========================================
+   GAMENEW - SEARCH AUTOCOMPLETE STYLE
+========================================= */
+
+.header-search {
+    position: relative;
+}
+
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 9px);
+    right: 0;
+    width: 100%;
+    max-height: 320px;
+    overflow-y: auto;
+    z-index: 9999;
+
+    padding: 7px;
+    background: #131e2e;
+    border: 1px solid rgba(29,161,255,.35);
+    border-radius: 12px;
+
+    box-shadow: 0 12px 35px rgba(0,0,0,.45);
+}
+
+.search-suggestions[hidden] {
+    display: none !important;
+}
+
+.search-suggestion {
+    display: block;
+    width: 100%;
+    padding: 12px 13px;
+
+    border: 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    border-radius: 7px;
+
+    background: transparent;
+    color: #dce8f8;
+    font-family: inherit;
+    font-size: 12px;
+    text-align: right;
+    cursor: pointer;
+
+    transition: background .2s ease, color .2s ease;
+}
+
+.search-suggestion:last-child {
+    border-bottom: 0;
+}
+
+.search-suggestion:hover,
+.search-suggestion.active {
+    background: rgba(29,161,255,.14);
+    color: #35adff;
+}
+
+.search-suggestion:focus-visible {
+    outline: 2px solid #35adff;
+    outline-offset: -2px;
+}
+
+@media (max-width: 550px) {
+    .search-suggestions {
+        max-height: 260px;
+        top: calc(100% + 6px);
+    }
+
+    .search-suggestion {
+        padding: 11px;
+        font-size: 12px;
+    }
+}
