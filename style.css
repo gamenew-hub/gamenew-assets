@@ -3347,3 +3347,52 @@ body:not(.is-post-page) .game-post .post-taxonomy {
 
 
 
+
+/* =========================================
+   GAMENEW - FIX FULL POST FOOTER LAYOUT
+========================================= */
+
+body.is-post-page .game-post.is-full-post .post-excerpt {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    clear: both;
+}
+
+/* دسته‌بندی و برچسب‌ها */
+body.is-post-page .game-post.is-full-post .post-taxonomy {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    clear: both;
+    float: none;
+    position: relative;
+    box-sizing: border-box;
+    margin: 25px 0 0;
+}
+
+/* ردیف‌های دسته‌بندی و برچسب */
+body.is-post-page .game-post.is-full-post .post-taxonomy > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 8px;
+}
+
+/* جلوگیری از شناور ماندن عناصر */
+body.is-post-page .game-post.is-full-post .post-taxonomy::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+@media (max-width: 700px) {
+    body.is-post-page .game-post.is-full-post .post-taxonomy > div {
+        gap: 6px;
+    }
+}
