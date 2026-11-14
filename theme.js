@@ -86,8 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
 /* =========================================
-   GAMENEW - SEARCH AUTOCOMPLETE
+   GAMENEW - FULL ARCHIVE AUTOCOMPLETE
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -99,29 +100,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!searchArea || !searchForm || !searchInput) return;
 
-    // جمع‌آوری عنوان مطالب از کارت‌ها و آخرین راهنماها
+    const BLOG_HOST = "gamenew.blogfa.com";
+    const ARCHIVE_PAGES = 6;
+
     const posts = [];
     const seen = new Set();
 
-    document.querySelectorAll(
-        ".game-post .post-title a, .sidebar-post-list a"
-    ).forEach(function (link) {
-        const title = link.textContent.trim();
-        const url = link.getAttribute("href");
+    let archiveLoaded = false;
+    let archivePromise = null;
+    let activeIndex = -1;
+    let currentResults = [];
 
-        if (!title || !url || url === "#") return;
-
-        const key = url.trim();
-
-        if (seen.has(key)) return;
-
-        seen.add(key);
-        posts.push({ title: title, url: url });
-    });
-
-    if (!posts.length) return;
-
-    // یکسان‌سازی حروف فارسی و انگلیسی
     function normalize(value) {
         return value
             .toLowerCase()
@@ -131,16 +120,41 @@ document.addEventListener("DOMContentLoaded", function () {
             .trim();
     }
 
-    // ساخت فهرست پیشنهادها
+    function addPost(title, url) {
+        title = (title || "").replace(/\s+/g, " ").trim();
+
+        if (!title || !url) return;
+
+        try {
+            const parsedUrl = new URL(url, window.location.origin);
+
+            if (parsedUrl.hostname !== BLOG_HOST) return;
+            if (!/^\/post\/\d+(?:\/|$)/.test(parsedUrl.pathname)) return;
+
+            const cleanUrl = parsedUrl.origin + parsedUrl.pathname;
+
+            if (seen.has(cleanUrl)) return;
+
+            seen.add(cleanUrl);
+            posts.push({
+                title: title,
+                url: cleanUrl
+            });
+        } catch (error) {}
+    }
+
+    // مطالب موجود در صفحه فعلی
+    document.querySelectorAll('a[href*="/post/"]').forEach(function (link) {
+        addPost(link.textContent, link.href);
+    });
+
+    // کادر پیشنهادها
     const suggestionBox = document.createElement("div");
     suggestionBox.className = "search-suggestions";
     suggestionBox.setAttribute("role", "listbox");
     suggestionBox.hidden = true;
 
     searchArea.appendChild(suggestionBox);
-
-    let activeIndex = -1;
-    let currentResults = [];
 
     function closeSuggestions() {
         suggestionBox.hidden = true;
@@ -206,6 +220,61 @@ document.addEventListener("DOMContentLoaded", function () {
         suggestionBox.hidden = false;
     }
 
+    // دریافت تمام صفحات آرشیو بلاگفا
+    function loadFullArchive() {
+        if (archiveLoaded) return Promise.resolve();
+
+        if (archivePromise) return archivePromise;
+
+        if (window.location.hostname !== BLOG_HOST) {
+            return Promise.resolve();
+        }
+
+        const requests = [];
+
+        for (let page = 1; page <= ARCHIVE_PAGES; page++) {
+            const url = page === 1
+                ? "/posts/"
+                : "/posts/?p=" + page;
+
+            requests.push(
+                fetch(url, {
+                    credentials: "same-origin"
+                })
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error("Archive page unavailable");
+                    }
+
+                    return response.text();
+                })
+                .then(function (html) {
+                    const doc = new DOMParser().parseFromString(
+                        html,
+                        "text/html"
+                    );
+
+                    doc.querySelectorAll('a[href*="/post/"]').forEach(
+                        function (link) {
+                            addPost(link.textContent, link.href);
+                        }
+                    );
+                })
+                .catch(function (error) {
+                    console.warn("GameNew archive page error:", error);
+                })
+            );
+        }
+
+        archivePromise = Promise.all(requests).then(function () {
+            archiveLoaded = true;
+
+            showSuggestions(searchInput.value);
+        });
+
+        return archivePromise;
+    }
+
     searchInput.setAttribute("autocomplete", "off");
     searchInput.setAttribute("role", "combobox");
     searchInput.setAttribute("aria-autocomplete", "list");
@@ -213,10 +282,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     searchInput.addEventListener("input", function () {
         showSuggestions(searchInput.value);
+
         searchInput.setAttribute(
             "aria-expanded",
             String(!suggestionBox.hidden)
         );
+
+        if (normalize(searchInput.value).length >= 2) {
+            loadFullArchive();
+        }
     });
 
     searchInput.addEventListener("keydown", function (event) {
@@ -224,21 +298,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (event.key === "ArrowDown") {
             event.preventDefault();
+
             activeIndex = Math.min(
                 activeIndex + 1,
                 currentResults.length - 1
             );
+
             updateActiveItem();
         }
 
         if (event.key === "ArrowUp") {
             event.preventDefault();
+
             activeIndex = Math.max(activeIndex - 1, 0);
+
             updateActiveItem();
         }
 
         if (event.key === "Enter" && activeIndex >= 0) {
             event.preventDefault();
+
             window.location.href = currentResults[activeIndex].url;
         }
 
@@ -258,6 +337,8 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.addEventListener("focus", function () {
         if (searchInput.value.trim().length >= 2) {
             showSuggestions(searchInput.value);
+            loadFullArchive();
+
             searchInput.setAttribute(
                 "aria-expanded",
                 String(!suggestionBox.hidden)
