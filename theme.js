@@ -364,3 +364,14 @@ document.addEventListener("DOMContentLoaded", function () {
     heading.textContent = "بازی‌های " + genreName;
 });
 
+/* GAMENEW - HIDE HERO SLIDER ON TAG PAGES */
+document.addEventListener("DOMContentLoaded", function () {
+    if (/^\/tag\//.test(window.location.pathname)) {
+        const heroSlider = document.querySelector(".hero");
+
+        if (heroSlider) {
+            heroSlider.style.display = "none";
+        }
+    }
+});
+
