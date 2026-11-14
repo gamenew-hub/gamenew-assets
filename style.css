@@ -3842,3 +3842,50 @@ body.is-post-page .game-post.is-full-post {
         font-size: 12px;
     }
 }
+
+/* GAMENEW - FIX AUTOCOMPLETE BUTTON LAYOUT */
+
+.header-search .search-suggestions {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px;
+    overflow-x: hidden;
+}
+
+.header-search .search-suggestions .search-suggestion {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 42px;
+    padding: 11px 13px !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+    color: #dce8f8 !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.07) !important;
+    border-radius: 7px !important;
+
+    font-family: inherit !important;
+    font-size: 12px !important;
+    line-height: 1.9 !important;
+    text-align: right !important;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+
+    cursor: pointer;
+}
+
+.header-search .search-suggestions .search-suggestion:hover,
+.header-search .search-suggestions .search-suggestion.active {
+    background: rgba(29,161,255,.14) !important;
+    color: #35adff !important;
+}
+
+.header-search .search-suggestions .search-suggestion:last-child {
+    border-bottom: 0 !important;
+}
