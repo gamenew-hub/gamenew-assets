@@ -375,3 +375,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+
+/* GAMENEW - ACTIVE GENRE DETECTION */
+
+(function () {
+
+    function setActiveGenre() {
+
+        const currentPath = window.location.pathname.replace(/\/+$/, "");
+
+        document.querySelectorAll(".genre-item").forEach(function (item) {
+
+            const itemPath = new URL(item.href, window.location.origin)
+                .pathname.replace(/\/+$/, "");
+
+            if (itemPath === currentPath) {
+                item.classList.add("is-active");
+                item.setAttribute("aria-current", "page");
+            }
+
+        });
+
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", setActiveGenre);
+    } else {
+        setActiveGenre();
+    }
+
+})();
