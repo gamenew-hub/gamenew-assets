@@ -4036,3 +4036,21 @@ body.is-post-page .game-post.is-full-post {
     outline: 2px solid #2196f3;
     outline-offset: 3px;
 }
+
+/* GAMENEW - ACTIVE GENRE STYLE */
+
+.genre-item.is-active {
+    background: linear-gradient(135deg, #173d60, #1c2b42);
+    border: 1px solid #2196f3;
+    box-shadow:
+        0 0 0 1px rgba(33, 150, 243, 0.15),
+        0 0 18px rgba(33, 150, 243, 0.25);
+}
+
+.genre-item.is-active strong {
+    color: #42b6ff;
+}
+
+.genre-item.is-active .genre-icon {
+    background: rgba(33, 150, 243, 0.2);
+}
