@@ -85,3 +85,185 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+/* =========================================
+   GAMENEW - SEARCH AUTOCOMPLETE
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+    "use strict";
+
+    const searchArea = document.querySelector(".header-search");
+    const searchForm = searchArea?.querySelector("form");
+    const searchInput = searchForm?.querySelector('input[name="q"]');
+
+    if (!searchArea || !searchForm || !searchInput) return;
+
+    // جمع‌آوری عنوان مطالب از کارت‌ها و آخرین راهنماها
+    const posts = [];
+    const seen = new Set();
+
+    document.querySelectorAll(
+        ".game-post .post-title a, .sidebar-post-list a"
+    ).forEach(function (link) {
+        const title = link.textContent.trim();
+        const url = link.getAttribute("href");
+
+        if (!title || !url || url === "#") return;
+
+        const key = url.trim();
+
+        if (seen.has(key)) return;
+
+        seen.add(key);
+        posts.push({ title: title, url: url });
+    });
+
+    if (!posts.length) return;
+
+    // یکسان‌سازی حروف فارسی و انگلیسی
+    function normalize(value) {
+        return value
+            .toLowerCase()
+            .replace(/[يى]/g, "ی")
+            .replace(/ك/g, "ک")
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
+    // ساخت فهرست پیشنهادها
+    const suggestionBox = document.createElement("div");
+    suggestionBox.className = "search-suggestions";
+    suggestionBox.setAttribute("role", "listbox");
+    suggestionBox.hidden = true;
+
+    searchArea.appendChild(suggestionBox);
+
+    let activeIndex = -1;
+    let currentResults = [];
+
+    function closeSuggestions() {
+        suggestionBox.hidden = true;
+        suggestionBox.innerHTML = "";
+        activeIndex = -1;
+        currentResults = [];
+        searchInput.removeAttribute("aria-activedescendant");
+    }
+
+    function updateActiveItem() {
+        const items = suggestionBox.querySelectorAll(".search-suggestion");
+
+        items.forEach(function (item, index) {
+            item.classList.toggle("active", index === activeIndex);
+            item.setAttribute(
+                "aria-selected",
+                index === activeIndex ? "true" : "false"
+            );
+        });
+
+        if (activeIndex >= 0 && items[activeIndex]) {
+            searchInput.setAttribute(
+                "aria-activedescendant",
+                items[activeIndex].id
+            );
+        } else {
+            searchInput.removeAttribute("aria-activedescendant");
+        }
+    }
+
+    function showSuggestions(query) {
+        const term = normalize(query);
+
+        closeSuggestions();
+
+        if (term.length < 2) return;
+
+        currentResults = posts
+            .filter(function (post) {
+                return normalize(post.title).includes(term);
+            })
+            .slice(0, 6);
+
+        if (!currentResults.length) return;
+
+        currentResults.forEach(function (post, index) {
+            const item = document.createElement("button");
+
+            item.type = "button";
+            item.className = "search-suggestion";
+            item.id = "game-search-option-" + index;
+            item.setAttribute("role", "option");
+            item.setAttribute("aria-selected", "false");
+            item.textContent = post.title;
+
+            item.addEventListener("click", function () {
+                window.location.href = post.url;
+            });
+
+            suggestionBox.appendChild(item);
+        });
+
+        suggestionBox.hidden = false;
+    }
+
+    searchInput.setAttribute("autocomplete", "off");
+    searchInput.setAttribute("role", "combobox");
+    searchInput.setAttribute("aria-autocomplete", "list");
+    searchInput.setAttribute("aria-expanded", "false");
+
+    searchInput.addEventListener("input", function () {
+        showSuggestions(searchInput.value);
+        searchInput.setAttribute(
+            "aria-expanded",
+            String(!suggestionBox.hidden)
+        );
+    });
+
+    searchInput.addEventListener("keydown", function (event) {
+        if (suggestionBox.hidden) return;
+
+        if (event.key === "ArrowDown") {
+            event.preventDefault();
+            activeIndex = Math.min(
+                activeIndex + 1,
+                currentResults.length - 1
+            );
+            updateActiveItem();
+        }
+
+        if (event.key === "ArrowUp") {
+            event.preventDefault();
+            activeIndex = Math.max(activeIndex - 1, 0);
+            updateActiveItem();
+        }
+
+        if (event.key === "Enter" && activeIndex >= 0) {
+            event.preventDefault();
+            window.location.href = currentResults[activeIndex].url;
+        }
+
+        if (event.key === "Escape") {
+            closeSuggestions();
+            searchInput.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    searchInput.addEventListener("blur", function () {
+        window.setTimeout(function () {
+            closeSuggestions();
+            searchInput.setAttribute("aria-expanded", "false");
+        }, 150);
+    });
+
+    searchInput.addEventListener("focus", function () {
+        if (searchInput.value.trim().length >= 2) {
+            showSuggestions(searchInput.value);
+            searchInput.setAttribute(
+                "aria-expanded",
+                String(!suggestionBox.hidden)
+            );
+        }
+    });
+
+});
+
