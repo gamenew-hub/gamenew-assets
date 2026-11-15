@@ -6,7 +6,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const isPostPage = /^\/post\/\d+/i.test(window.location.pathname);
 
     document.body.classList.toggle("is-post-page", isPostPage);
+    
+// اصلاح تگ عنوان مطلب در صفحات اختصاصی
+if (isPostPage) {
+    const postTitle = document.querySelector(
+        ".game-post.is-full-post .post-title"
+    );
 
+    if (postTitle && postTitle.tagName !== "H1") {
+        const newTitle = document.createElement("h1");
+
+        Array.from(postTitle.attributes).forEach(function (attr) {
+            newTitle.setAttribute(attr.name, attr.value);
+        });
+
+        while (postTitle.firstChild) {
+            newTitle.appendChild(postTitle.firstChild);
+        }
+
+        postTitle.replaceWith(newTitle);
+    }
+}
+
+
+    
     // مدیریت تصاویر مطالب
     document.querySelectorAll(".game-post").forEach(function (post) {
         const content = post.querySelector(".post-excerpt");
