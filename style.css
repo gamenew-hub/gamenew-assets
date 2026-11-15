@@ -4054,3 +4054,7 @@ body.is-post-page .game-post.is-full-post {
 .genre-item.is-active .genre-icon {
     background: rgba(33, 150, 243, 0.2);
 }
+/* Hide genre filter on individual post pages */
+.is-post-page .genre-filter {
+    display: none !important;
+}
