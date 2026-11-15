@@ -461,3 +461,34 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 })();
+
+
+/* GAMENEW - DYNAMIC CANONICAL URL */
+
+(function () {
+
+    const canonicalUrl = new URL(window.location.href);
+
+    // Remove URL hash
+    canonicalUrl.hash = "";
+
+    // Remove tracking parameters
+    Array.from(canonicalUrl.searchParams.keys()).forEach(function (key) {
+        if (/^(utm_.+|gclid|fbclid)$/i.test(key)) {
+            canonicalUrl.searchParams.delete(key);
+        }
+    });
+
+    // Add canonical only if one does not already exist
+    if (!document.querySelector('link[rel="canonical"]')) {
+
+        const canonical = document.createElement("link");
+
+        canonical.rel = "canonical";
+        canonical.href = canonicalUrl.href;
+
+        document.head.appendChild(canonical);
+    }
+
+})();
+
