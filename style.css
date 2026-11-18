@@ -4058,3 +4058,78 @@ body.is-post-page .game-post.is-full-post {
 .is-post-page .genre-filter {
     display: none !important;
 }
+/* =========================
+   POST SHARE BUTTONS
+========================= */
+
+.post-share {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0;
+    padding: 14px 16px;
+    background: #171717;
+    border: 1px solid #333;
+    border-right: 3px solid #e32626;
+    border-radius: 10px;
+}
+
+.post-share-label {
+    color: #ddd;
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.post-share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 105px;
+    padding: 9px 16px;
+    border-radius: 7px;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+}
+
+.share-telegram {
+    background: #229ed9;
+}
+
+.share-whatsapp {
+    background: #20a464;
+}
+
+.post-share-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.3);
+}
+
+.post-share-btn:active {
+    transform: scale(0.97);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .post-share {
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .post-share-label {
+        width: 100%;
+        margin-bottom: 3px;
+    }
+
+    .post-share-btn {
+        flex: 1;
+        min-width: 0;
+    }
+
+}
