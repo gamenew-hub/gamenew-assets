@@ -4204,3 +4204,15 @@ body.is-post-page .game-post.is-full-post {
     }
 
 }
+/* X SHARE BUTTON */
+
+.share-x {
+    background: #000000;
+    border: 1px solid #555;
+    color: #ffffff !important;
+}
+
+.share-x:hover {
+    background: #222222;
+    border-color: #888;
+}
