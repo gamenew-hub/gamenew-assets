@@ -4228,3 +4228,15 @@ body.is-post-page .game-post.is-full-post {
     background: #0d65d9;
     border-color: #0d65d9;
 }
+/* NATIVE SHARE BUTTON */
+
+.share-native {
+    background: #7c3aed;
+    border: 1px solid #7c3aed;
+    color: #ffffff !important;
+}
+
+.share-native:hover {
+    background: #6d28d9;
+    border-color: #6d28d9;
+}
