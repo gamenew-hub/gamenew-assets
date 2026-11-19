@@ -4133,3 +4133,37 @@ body.is-post-page .game-post.is-full-post {
     }
 
 }
+/* =========================
+   SHARE NOTIFICATION
+========================= */
+
+.share-notice {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 13px;
+    margin-right: 8px;
+    border-radius: 7px;
+    background: #183b2b;
+    border: 1px solid #20a464;
+    color: #55df91;
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(5px);
+    transition: all 0.3s ease;
+}
+
+.share-notice.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .share-notice {
+        width: 100%;
+        margin: 5px 0 0;
+    }
+}
