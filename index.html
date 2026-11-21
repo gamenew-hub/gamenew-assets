@@ -11,6 +11,19 @@
 <meta name="keywords" content="<-BlogAndPostTitle->, راهنمای بازی, گیم, بازی">
 <meta name="author" content="<-BlogAuthor->">
 
+<!-- Open Graph -->
+<meta property="og:site_name" content="GameNew">
+<meta property="og:title" content="<-BlogAndPostTitle->">
+<meta property="og:description" content="<-BlogAndPostTitle-> - <-BlogDescription->">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://raw.githubusercontent.com/gamenew-hub/gamenew-assets/main/images/slider/Backlit-Sign-Mockup%20copy.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gamenew-hub/gamenew-assets/main/images/slider/Backlit-Sign-Mockup%20copy.png">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<-BlogAndPostTitle->">
+<meta name="twitter:description" content="<-BlogDescription->">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="alternate"
@@ -85,7 +98,7 @@ function GetBC(lngPostid) {
             <a href="<-BlogUrl->">
 
                 <!-- لوگوی فعلی سایت -->
-                <img class="site-logo" src="https://s24.picofile.com/file/8451164176/5.png" alt="GameNew">
+                <img class="site-logo" src="https://raw.githubusercontent.com/gamenew-hub/gamenew-assets/refs/heads/main/images/LOGO-head.png" alt="GameNew">
                     
 
             </a>
@@ -340,7 +353,51 @@ function GetBC(lngPostid) {
         <div class="post-excerpt">
             <-PostContent->
         </div>
-         <div class="post-taxonomy">
+<!-- دکمه‌های اشتراک‌گذاری مطالب -->
+<div class="post-share">
+
+    <span class="post-share-label">اشتراک‌گذاری:</span>
+
+    <a href="#"
+       class="post-share-btn share-telegram"
+       data-post-id="<-PostId->"
+       onclick="shareGamePost(this, 'telegram'); return false;">
+        تلگرام
+    </a>
+
+    <a href="#"
+       class="post-share-btn share-whatsapp"
+       data-post-id="<-PostId->"
+       onclick="shareGamePost(this, 'whatsapp'); return false;">
+        واتساپ
+    </a>
+<a href="#"
+   class="post-share-btn share-x"
+   data-post-id="<-PostId->"
+   onclick="shareGamePost(this, 'x'); return false;">
+    X (توییتر)
+</a>
+<a href="#"
+   class="post-share-btn share-facebook"
+   data-post-id="<-PostId->"
+   onclick="shareGamePost(this, 'facebook'); return false;">
+    Facebook
+</a>
+<a href="javascript:void(0);"
+   class="post-share-btn share-native"
+   data-post-id="<-PostId->"
+   onclick="shareGamePost(this, 'native'); return false;">
+    اشتراک‌گذاری بیشتر
+</a>
+<a href="#"
+   class="post-share-btn share-copy"
+   data-post-id="<-PostId->"
+   onclick="shareGamePost(this, 'copy'); return false;">
+    کپی لینک
+</a>
+</div>      
+
+   <div class="post-taxonomy">
 
     <BlogPostCategoriesBlock>
         <div class="post-categories">
@@ -614,7 +671,7 @@ function GetBC(lngPostid) {
 
             <a href="<-BlogUrl->" class="footer-logo">
                 <img
-                    src="https://s24.picofile.com/file/8451164176/5.png"
+                    src="https://raw.githubusercontent.com/gamenew-hub/gamenew-assets/refs/heads/main/images/LOGO-head.png"
                     alt="GameNew"
                 >
             </a>
@@ -1066,6 +1123,172 @@ function GetBC(lngPostid) {
 
 
 
+<script>
+(function () {
+    // فقط در صفحه اختصاصی مطالب اجرا شود
+    if (!/^\/post\/\d+/.test(window.location.pathname)) {
+        return;
+    }
+
+    // پیدا کردن اولین تصویر محتوای مطلب
+    var firstImage = document.querySelector(
+        ".post-excerpt img"
+    );
+
+    if (!firstImage) return;
+
+    var imageUrl = firstImage.src;
+
+    // به‌روزرسانی تصویر Open Graph
+    var ogImage = document.querySelector(
+        'meta[property="og:image"]'
+    );
+
+    if (ogImage) {
+        ogImage.setAttribute("content", imageUrl);
+    }
+
+    // به‌روزرسانی تصویر Twitter Card
+    var twitterImage = document.querySelector(
+        'meta[name="twitter:image"]'
+    );
+
+    if (twitterImage) {
+        twitterImage.setAttribute("content", imageUrl);
+    }
+
+})();
+</script>
+<script>
+
+window.shareGamePost = function(button, platform) {
+
+    const postId = button.getAttribute("data-post-id");
+
+    if (!postId) {
+        alert("شناسه مطلب پیدا نشد!");
+        return;
+    }
+
+    const shareUrl =
+        "https://gamenew-share.shade-peyman.workers.dev/post/" +
+        postId + "/";
+
+    const article = button.closest(".game-post");
+
+    const titleElement = article
+        ? article.querySelector(".post-title")
+        : null;
+
+    const postTitle = titleElement
+        ? titleElement.innerText.trim()
+        : "راهنمای قدم به قدم بازی‌ها در GameNew";
+
+    // اشتراک‌گذاری بیشتر
+    if (platform === "native") {
+
+        if (navigator.share) {
+
+            navigator.share({
+                title: postTitle,
+                text: postTitle,
+                url: shareUrl
+            })
+            .catch(function(error) {
+                if (error.name !== "AbortError") {
+                    alert("اشتراک‌گذاری انجام نشد!");
+                }
+            });
+
+        } else {
+
+            showShareMessage(
+                button,
+                "اشتراک‌گذاری در این مرورگر پشتیبانی نمی‌شود."
+            );
+
+        }
+
+        return;
+    }
+
+    // کپی لینک
+    if (platform === "copy") {
+
+        navigator.clipboard.writeText(shareUrl)
+            .then(function() {
+                showShareMessage(button, "لینک کپی شد ✓");
+            })
+            .catch(function() {
+                showShareMessage(button, "کپی لینک ناموفق بود!");
+            });
+
+        return;
+    }
+
+    let shareLink = "";
+
+    if (platform === "telegram") {
+
+        shareLink =
+            "https://t.me/share/url?url=" +
+            encodeURIComponent(shareUrl) +
+            "&text=" +
+            encodeURIComponent(postTitle);
+
+    } else if (platform === "whatsapp") {
+
+        shareLink =
+            "https://wa.me/?text=" +
+            encodeURIComponent(postTitle + "\n" + shareUrl);
+
+    } else if (platform === "x") {
+
+        shareLink =
+            "https://twitter.com/intent/tweet?url=" +
+            encodeURIComponent(shareUrl) +
+            "&text=" +
+            encodeURIComponent(postTitle);
+
+    } else if (platform === "facebook") {
+
+        shareLink =
+            "https://www.facebook.com/sharer/sharer.php?u=" +
+            encodeURIComponent(shareUrl);
+
+    }
+
+    if (shareLink) {
+        window.open(
+            shareLink,
+            "_blank",
+            "noopener,noreferrer"
+        );
+    }
+
+};
+
+function showShareMessage(button, message) {
+
+    let notice = button.parentElement.querySelector(".share-notice");
+
+    if (!notice) {
+        notice = document.createElement("span");
+        notice.className = "share-notice";
+        button.parentElement.appendChild(notice);
+    }
+
+    notice.textContent = message;
+    notice.classList.add("show");
+
+    clearTimeout(notice.timer);
+
+    notice.timer = setTimeout(function() {
+        notice.classList.remove("show");
+    }, 2500);
+}
+
+</script>
 
 </body>
 
